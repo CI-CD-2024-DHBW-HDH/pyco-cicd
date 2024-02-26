@@ -23,7 +23,7 @@ export function mediumMove(board: Field[], own: Field): number {
   }
 
   do {
-    move = randomMove(9);
+    move = randomMove(8);
   } while (board[move] !== Field.EMPTY);
 
   return move;
