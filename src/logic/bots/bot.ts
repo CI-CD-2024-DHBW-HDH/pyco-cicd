@@ -27,6 +27,24 @@ export function moveWithMode(mode: Mode): BotMove | undefined {
 // winningMove returns a move player can play to win
 // if there is no winning move, it returns -1
 export function winningMove(board: Field[], player: Field): number {
+  if(won(board) !== Field.EMPTY){
+    return -1;
+  }
+
+  for (let index = 0; index < board.length; index++) {
+     if (board[index] !== Field.EMPTY) {
+        continue;
+     }
+
+     board[index] = player;
+     let hasWon = won(board) === player;
+     board[index] = Field.EMPTY;
+
+     if (hasWon) {
+        return index;
+     }
+  }
+  
   return -1
 }
 
