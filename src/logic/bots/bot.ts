@@ -48,6 +48,45 @@ export function winningMove(board: Field[], player: Field): number {
   return -1
 }
 
+export function blockMove(board: Field[], player: Field): number{
+  const opponent = player === Field.PLAYER1 ? Field.PLAYER2 : Field.PLAYER1;
+
+  const winConditions = [
+    [0, 1, 2], // Row 1
+    [3, 4, 5], // Row 2
+    [6, 7, 8], // Row 3
+    [0, 3, 6], // Column 1
+    [1, 4, 7], // Column 2
+    [2, 5, 8], // Column 3
+    [0, 4, 8], // Diagonal 1
+    [2, 4, 6]  // Diagonal 2
+  ];
+
+  for (const condition of winConditions) {
+    let opponentCount = 0;
+    let emptyCount = 0;
+    let blockIndex = 0;
+
+    for (let index = 0; index < condition.length; index++) {
+      const element = condition[index];
+      
+      if (board[element] === Field.EMPTY){
+        emptyCount++;
+        blockIndex = element;
+      } else if (board[element] === opponent){
+        opponentCount++;
+      }
+
+    }
+
+    if (opponentCount === 2 && emptyCount === 1) {
+        return blockIndex;
+    }
+  }
+
+  return -1;
+}
+
 export function randomMove(bounds: number): number {
   return Math.floor(Math.random() * bounds);
 }
