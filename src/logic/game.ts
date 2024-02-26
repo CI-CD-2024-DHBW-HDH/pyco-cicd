@@ -102,11 +102,7 @@ export function isFull(board: Field[]): boolean {
 }
 
 export function won(board: Field[]): Field {
-  console.log('inside won');
-  var p1Symbols: number = 0;
-  var p2Symbols: number = 0;
-
-  
+ 
   //check horizontal lines
   for(let i = 0; i<3; i++){
     if(board[i * 3] !== Field.EMPTY &&
