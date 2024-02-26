@@ -1,4 +1,4 @@
-import { Field, getBlanks, invertPlayer, isPlayer, Player } from "./game";
+import { Field, getBlanks, invertPlayer, isPlayer, Player, Outcome } from "./game";
 
 describe("invert player", () => {
     it("invert player1 to player2", () => {
@@ -185,6 +185,55 @@ describe("invert player", () => {
         // Assign a bot move function and verify the change
         player.botMove = mockBotMove;
         expect(player.isHuman()).toBe(false);
+      });
+    });
+  });
+
+  describe('Outcome Class', () => {
+    describe('Win Conditions', () => {
+      it('should correctly identify a win for Player1 horizontally', () => {
+        const board = [
+          Field.PLAYER1, Field.PLAYER1, Field.PLAYER1,
+          Field.EMPTY, Field.EMPTY, Field.EMPTY,
+          Field.EMPTY, Field.EMPTY, Field.EMPTY,
+        ];
+        const outcome = new Outcome(board);
+        expect(outcome.winner).toBe(Field.PLAYER1);
+        expect(outcome.finished).toBe(true);
+      });
+  
+      it('should correctly identify a win for Player2 vertically', () => {
+        const board = [
+          Field.PLAYER2, Field.EMPTY, Field.EMPTY,
+          Field.PLAYER2, Field.EMPTY, Field.EMPTY,
+          Field.PLAYER2, Field.EMPTY, Field.EMPTY,
+        ];
+        const outcome = new Outcome(board);
+        expect(outcome.winner).toBe(Field.PLAYER2);
+        expect(outcome.finished).toBe(true);
+      });
+  
+      it('should correctly identify a diagonal win', () => {
+        const board = [
+          Field.PLAYER1, Field.EMPTY, Field.EMPTY,
+          Field.EMPTY, Field.PLAYER1, Field.EMPTY,
+          Field.EMPTY, Field.EMPTY, Field.PLAYER1,
+        ];
+        const outcome = new Outcome(board);
+        expect(outcome.winner).toBe(Field.PLAYER1);
+        expect(outcome.finished).toBe(true);
+      });
+    });
+  
+    describe('Game Not Finished', () => {
+      it('should not mark the game as finished if there are empty fields and no winner', () => {
+        const board = [
+          Field.EMPTY, Field.EMPTY, Field.EMPTY,
+          Field.EMPTY, Field.PLAYER1, Field.EMPTY,
+          Field.EMPTY, Field.EMPTY, Field.EMPTY,
+        ];
+        const outcome = new Outcome(board);
+        expect(outcome.finished).toBe(false);
       });
     });
   });
