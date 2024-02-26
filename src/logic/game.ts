@@ -106,7 +106,7 @@ export function won(board: Field[]): Field {
   //check horizontal lines
   for(let i = 0; i<3; i++){
     if(board[i * 3] !== Field.EMPTY &&
-      board[i * 3] === board[i * 3 + 1] && board[i * 3 +2]){
+      board[i * 3] === board[i * 3 + 1] && board[i * 3 + 1] === board[i * 3 +2]){
         return board[i * 3];
       }
   }
@@ -114,7 +114,7 @@ export function won(board: Field[]): Field {
   for(let i = 0; i<3; i++){
 
     if(board[i * 3] !== Field.EMPTY &&
-      board[i * 3] === board[i * 3 + 3] && board[i * 3 + 6]){
+      board[i * 3] === board[i * 3 + 3] && board[i * 3 + 3] === board[i * 3 + 6]){
         return board[i * 3];
       }
   }
