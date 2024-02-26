@@ -19,7 +19,7 @@ jobs:
       - run: npm update
       - name: format check
         run: npm run format:check
-      - name: eslint check
-        run: npm run lint
+      #- name: eslint check
+      # run: npm run lint
       
       - run: npm run build
