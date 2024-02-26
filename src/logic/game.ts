@@ -114,8 +114,8 @@ export function won(board: Field[]): Field {
   for(let i = 0; i<3; i++){
 
     if(board[i * 3] !== Field.EMPTY &&
-      board[i * 3] === board[i * 3 + 3] && board[i * 3 + 3] === board[i * 3 + 6]){
-        return board[i * 3];
+      board[i] === board[i + 3] && board[i + 3] === board[i + 6]){
+        return board[i];
       }
   }
 
