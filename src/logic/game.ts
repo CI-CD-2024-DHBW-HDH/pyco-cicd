@@ -102,6 +102,31 @@ export function isFull(board: Field[]): boolean {
 }
 
 export function won(board: Field[]): Field {
+  console.log('inside won');
+  var p1Symbols: number = 0;
+  var p2Symbols: number = 0;
+
+  
+  //check horizontal lines
+  for(let i = 0; i<3; i++){
+    if(board[i * 3] !== Field.EMPTY &&
+      board[i * 3] === board[i * 3 + 1] && board[i * 3 +2]){
+        return board[i * 3];
+      }
+  }
+  //check vertical lines
+  for(let i = 0; i<3; i++){
+
+    if(board[i * 3] !== Field.EMPTY &&
+      board[i * 3] === board[i * 3 + 3] && board[i * 3 + 6]){
+        return board[i * 3];
+      }
+  }
+
+  //check diagonal lines
+  if((board[0] !== Field.EMPTY && board[0] === board[4] && board[4] == board[8]) || (board[2] !== Field.EMPTY && board[2] === board[4] && board[4] === board[6])){
+   return board[4]
+  }
   return Field.EMPTY
 }
 
