@@ -7,5 +7,5 @@ export function easyMove(board: Field[], own: Field): number {
   if (winningMove(board, own) !== -1){
     return winningMove(board, own);
   }
-  return randomMove(Math.random());
+  return randomMove(9);
 }
