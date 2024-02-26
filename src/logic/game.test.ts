@@ -1,4 +1,4 @@
-import { Field, getBlanks, invertPlayer, isPlayer } from "./game";
+import { Field, getBlanks, invertPlayer, isFull, isPlayer, won } from "./game";
 
 describe("invert player", () => {
     it("invert player1 to player2", () => {
@@ -46,5 +46,64 @@ describe("invert player", () => {
         board[6] = Field.PLAYER2;
         const result: number[] = getBlanks(board);
         expect(result.length).toBe(7);
+    });
+  })
+
+  //test won()
+  describe("won", () => {
+    it("player1 won with horizontal line", () => {
+        let board = new Array<Field>(9);
+        board.fill(Field.EMPTY);
+        board[0] = Field.PLAYER1;
+        board[1] = Field.PLAYER1;
+        board[2] = Field.PLAYER1;
+        const result: Field = won(board);
+        expect(result).toBe(Field.PLAYER1);
+    });
+    it("player2 won with diagonal line", () => {
+        let board = new Array<Field>(9);
+        board.fill(Field.EMPTY);
+        board[0] = Field.PLAYER2;
+        board[1] = Field.PLAYER1;
+        board[4] = Field.PLAYER2;
+        board[8] = Field.PLAYER2;
+        const result: Field = won(board);
+        expect(result).toBe(Field.PLAYER2);
+    });
+    it("player2 won with vertival line", () => {
+        let board = new Array<Field>(9);
+        board.fill(Field.EMPTY);
+        board[0] = Field.PLAYER2;
+        board[1] = Field.PLAYER1;
+        board[3] = Field.PLAYER2;
+        board[6] = Field.PLAYER2;
+        const result: Field = won(board);
+        expect(result).toBe(Field.PLAYER2);
+    });
+    it("no winner", () => {
+        let board = new Array<Field>(9);
+        board.fill(Field.EMPTY);
+        board[0] = Field.PLAYER2;
+        board[1] = Field.PLAYER1;
+        const result: Field = won(board);
+        expect(result).toBe(Field.EMPTY);
+    });
+  })
+
+  //test isFull()
+  describe("is full", () => {
+    it("field is full", () => {
+        const board = new Array<Field>(9);
+        board.fill(Field.PLAYER1);
+        const result: Boolean = isFull(board);
+        expect(result).toBe(true);
+    });
+    it("get blanks from custom field", () => {
+        const board = new Array<Field>(9);
+        board.fill(Field.EMPTY);
+        board[1] = Field.PLAYER1;
+        board[6] = Field.PLAYER2;
+        const result: Boolean = isFull(board);
+        expect(result).toBe(false);
     });
   })
