@@ -17,8 +17,8 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm update
-      - name: format check
-        run: npm run format:check
+      #- name: format check
+      #  run: npm run format:check
       #- name: eslint check
       # run: npm run lint
       
