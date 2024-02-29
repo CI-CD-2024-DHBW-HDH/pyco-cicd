@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:latest as build
 
 WORKDIR /usr/src/app
 
@@ -12,6 +12,7 @@ ARG buildarg
 
 RUN npm run build 
 
+FROM nginx:alpine as run
 EXPOSE 8080
-
-ENTRYPOINT [ "dist/index.html" ]
+COPY --from=build /usr/src/app/dist/ /usr/share/nginx/html/
+CMD ["nginx", "-g", "daemon off;"]
