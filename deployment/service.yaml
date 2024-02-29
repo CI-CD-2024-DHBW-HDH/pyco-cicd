@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2024-02-29T14:34:44Z"
+  labels:
+    app: pyco-svc
+  name: pyco-svc
+  namespace: default
+  resourceVersion: "12868"
+  uid: 9e2c8ff4-50d4-4ab5-9fc8-4270bb28200e
+spec:
+  clusterIP: 10.99.89.67
+  clusterIPs:
+  - 10.99.89.67
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 8080-80
+    nodePort: 30919
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: pyco-svc
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost
