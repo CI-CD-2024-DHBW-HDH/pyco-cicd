@@ -23,3 +23,12 @@ jobs:
           kubectl create secret docker-registry regcred --docker-server=ghcr.io --docker-username=${{ github.actor }} --docker-password=${{ secrets.GITHUB_TOKEN }}
           kubectl apply -n pyco-cicd -f deployment/deployment.yaml
           kubectl apply -n pyco-cicd -f deployment/service.yaml
+      - name: Set imagePullSecret
+        uses: azure/k8s-create-secret@v4
+        with:
+          namespace: 'pyco-cicd'
+          secret-name: 'regcred'
+          container-registry-url: 'ghcr.io'
+          container-registry-username: ${{ github.actor }}
+          container-registry-password: ${{ secrets.PULL_TOKEN }}
+        id: create-secret
