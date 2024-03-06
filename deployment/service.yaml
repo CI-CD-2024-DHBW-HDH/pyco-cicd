@@ -1,13 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: "2024-02-29T14:34:44Z"
   labels:
     app: pyco-svc
   name: pyco-svc
   namespace: default
-  resourceVersion: "100518"
-  uid: 9e2c8ff4-50d4-4ab5-9fc8-4270bb28200e
 spec:
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
