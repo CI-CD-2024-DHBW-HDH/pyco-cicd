@@ -22,7 +22,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: pyco-cicd
     spec:
