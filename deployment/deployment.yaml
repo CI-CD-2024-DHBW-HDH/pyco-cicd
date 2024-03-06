@@ -3,14 +3,11 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "2"
-  creationTimestamp: "2024-02-29T14:03:46Z"
   generation: 2
   labels:
     app: pyco-cicd
   name: pyco-cicd
   namespace: default
-  resourceVersion: "98066"
-  uid: 5267fa5d-505d-4343-841e-ca56b95d3d28
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
