@@ -23,11 +23,11 @@ jobs:
           kubectl apply -n pyco-cicd -f deployment/deployment.yaml
           kubectl apply -n pyco-cicd -f deployment/service.yaml
       - name: Set imagePullSecret
-      uses: azure/k8s-create-secret@v4
-      with:
-         namespace: 'pyco-cicd'
-         secret-name: 'regcred'
-         container-registry-url: 'ghcr.io'
-         container-registry-username: ${{ github.actor }}
-         container-registry-password: ${{ secrets.GITHUB_TOKEN }}
-      id: create-secret
+        uses: azure/k8s-create-secret@v4
+        with:
+          namespace: 'pyco-cicd'
+          secret-name: 'regcred'
+          container-registry-url: 'ghcr.io'
+          container-registry-username: ${{ github.actor }}
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+        id: create-secret
