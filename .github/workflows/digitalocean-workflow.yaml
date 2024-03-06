@@ -20,5 +20,5 @@ jobs:
         run: kubectl create namespace pyco-cicd --dry-run=client -o yaml | kubectl apply -f -
       - name: Deploy
         run: |
-          kubectl apply -f deployment/deployment.yaml
-          kubectl apply -f deployment/service.yaml
+          kubectl apply -n pyco-cicd -f deployment/deployment.yaml
+          kubectl apply -n pyco-cicd -f deployment/service.yaml
