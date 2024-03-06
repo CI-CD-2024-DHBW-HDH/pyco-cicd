@@ -7,7 +7,6 @@ metadata:
   labels:
     app: pyco-cicd
   name: pyco-cicd
-  namespace: default
 spec:
   progressDeadlineSeconds: 600
   replicas: 1

@@ -4,7 +4,6 @@ metadata:
   labels:
     app: pyco-svc
   name: pyco-svc
-  namespace: default
 spec:
   externalTrafficPolicy: Cluster
   internalTrafficPolicy: Cluster
